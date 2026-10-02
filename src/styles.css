@@ -1,1 +1,129 @@
 /* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 400; /* Peso por defecto (Regular) */
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 400; /* Peso por defecto (Regular) */
+}
+
+/* ----------------------------------------------------------------------- */
+/* --------------------------- LOADER INITIAL ---------------------------- */
+/* ----------------------------------------------------------------------- */
+#loader {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  /* Configuración del Fade-In inicial */
+  animation: fadeIn 0.2s ease-in forwards;
+  transition:
+    opacity 0.4s ease-out,
+    visibility 0.4s ease-out;
+  background-color: #fff; /* Fondo blanco */
+}
+/* Clase que activa el fadeout */
+#loader.fade-out {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Animación de entrada al abrir la página */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.loader-spinner {
+  width: 50px;
+  aspect-ratio: 1;
+  display: grid;
+  position: relative;
+}
+.loader-spinner:before,
+.loader-spinner:after {
+  content: '';
+  grid-area: 1/1;
+  margin: 0 0 15px 15px;
+  --c: #0000 calc(100%/3), #000000 0 calc(2 * 100%/3), #0000 0;
+  --c1: linear-gradient(90deg, var(--c));
+  --c2: linear-gradient(0deg, var(--c));
+  background: var(--c1), var(--c2), var(--c1), var(--c2);
+  background-size:
+    300% 4px,
+    4px 300%;
+  background-repeat: no-repeat;
+  animation: l12 1s infinite linear;
+}
+.loader-spinner:after {
+  margin: 15px 15px 0 0;
+  transform: scale(-1, -1);
+}
+@keyframes l12 {
+  0% {
+    background-position:
+      50% 0,
+      100% 100%,
+      0 100%,
+      0 0;
+  }
+  25% {
+    background-position:
+      0 0,
+      100% 50%,
+      0 100%,
+      0 0;
+  }
+  50% {
+    background-position:
+      0 0,
+      100% 0,
+      50% 100%,
+      0 0;
+  }
+  75% {
+    background-position:
+      0 0,
+      100% 0,
+      100% 100%,
+      0 50%;
+  }
+  75.01% {
+    background-position:
+      100% 0,
+      100% 0,
+      100% 100%,
+      0 50%;
+  }
+  100% {
+    background-position:
+      50% 0,
+      100% 0,
+      100% 100%,
+      0 100%;
+  }
+}
+
+#loader-text:after {
+  content: 'Iniciando app...';
+  font-size: 1.2rem;
+  color: #000000;
+  margin-top: 20px;
+}
